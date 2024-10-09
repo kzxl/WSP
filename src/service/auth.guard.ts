@@ -1,24 +1,28 @@
-// auth.guard.ts
 import { Injectable } from '@angular/core';
-import { Router, CanActivate } from '@angular/router';
-import { AuthService } from '../service/auth';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthService } from './auth';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthGuard implements CanActivate {
   constructor(
     private router: Router,
-    private authService: AuthService
-  ) { }
+    private authenticationService: AuthService
+  ) {}
 
-  canActivate() {
-    const currentUser = this.authService.currentUserValue;
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    const currentUser = this.authenticationService.currentUserValue;
     if (currentUser) {
-      // đã đăng nhập nên return true
+      // đã đăng nhập nên cho phép truy cập
       return true;
     }
 
     // chưa đăng nhập nên chuyển hướng về trang login
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
     return false;
   }
 }
