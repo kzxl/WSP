@@ -1,6 +1,8 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { AppModule } from './module';
+/// <reference types="@angular/localize" />
 
-bootstrapApplication(AppModule, appConfig)
+import { bootstrapApplication } from '@angular/platform-browser';
+import { appConfig } from './config';
+import { LoginComponent } from './component/login';
+
+bootstrapApplication(LoginComponent, appConfig)
   .catch((err) => console.error(err));

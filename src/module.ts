@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, provideHttpClient  } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './component/login';
 import { DashboardComponent } from './component/dashboard';
 import { AuthGuard } from './service/auth.guard';
+import { NotFoundComponent } from './component/error/not-found';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -16,17 +17,20 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-    DashboardComponent
+  declarations: [     
+    DashboardComponent,
+    NotFoundComponent
   ],
-  imports: [
+  imports: [ 
+    LoginComponent,   
+    FormsModule,
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
+  exports:[LoginComponent],
   providers: [],
-  bootstrap: [LoginComponent]
+  bootstrap: []
 })
 export class AppModule { }
