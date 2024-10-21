@@ -180,7 +180,7 @@
 }
 
 .my-box:hover {
-    /* background-color: #f3f7fa; */
+     background-color: #f3f7fa; 
 }
 
 .my-box span {
@@ -251,7 +251,7 @@
 }
 
 .my-box-half:hover {
-    /* background-color: #f3f7fa; */
+    background-color: #f3f7fa; 
 }
 
 .size-img-success {
@@ -720,7 +720,7 @@
 }
 
 .scrollable_user.no_shadow {
-    /* box-shadow: none; */
+     box-shadow: none; 
 }
 
 #sidebar ul.components ul {

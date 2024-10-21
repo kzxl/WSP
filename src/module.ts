@@ -21,15 +21,10 @@ export const routes: Routes = [
     DashboardComponent,
     NotFoundComponent
   ],
-  imports: [ 
-    LoginComponent,   
-    FormsModule,
-    BrowserModule,
-    ReactiveFormsModule,
-    HttpClientModule,
+  imports: [
     RouterModule.forRoot(routes)
   ],
-  exports:[LoginComponent],
+  exports:[RouterModule],
   providers: [],
   bootstrap: []
 })
